@@ -27,7 +27,7 @@ $ bower install --save angular
 ```
 
 ### CSS ###
-We'll use SCSS, which is a pre-compiler for CSS.  To compile CSS once, run:
+We'll use SCSS, which is a pre-processor for CSS.  To compile CSS once, run:
 ```bash
 $ gulp css
 ```
