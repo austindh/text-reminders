@@ -1,0 +1,23 @@
+{
+  "name": "text-reminders",
+  "description": "Group project for CS 360",
+  "main": "index.js",
+  "authors": [
+    "Austin Hughes"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/austindh/text-reminders",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.1"
+  }
+}

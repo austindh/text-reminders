@@ -1,0 +1,4 @@
+//Secret key for encrypting web tokens
+module.exports = {
+    secret : "put secret here"
+};
