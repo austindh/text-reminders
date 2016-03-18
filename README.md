@@ -41,6 +41,8 @@ $ gulp watch
 will place a watch on the scss/ folder, and will automatically run `gulp css` whenever there's a change saved to the
 scss/ folder.
 
+All gulp functions are defined in `gulpfile.js`
+
 ### Running the App ###
 To run the server, use
 ```bash
