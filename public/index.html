@@ -1,4 +1,4 @@
-<html>
+<html ng-app="TextReminders">
 	<head>
 		<base href="/">
 		<title>Text Reminders</title>
@@ -8,11 +8,24 @@
 		<script src="lib/angular/angular.min.js"></script>
 
 	</head>
-	<body ng-app="TextReminders">
+	<body ng-controller="MainController">
 
-		<div ng-controller="MainController">
-			{{ test }}
+		<div class="top-bar">
+			<div class="title">Text Reminders</div>
+			<div class="login">Login</div>
 		</div>
+		<div class="main-page">
+
+			<div class="sign-up-box">
+				<div class="title">Sign Up</div>
+				<p>Enter your phone number and we'll send you a verification code!</p>
+				<label>Phone number: <input type="text" placeholder="555-555-5555" ng-model="phoneNumber"></label>
+				<div class="button big-action" ng-click="sendCode()">Send code!</div>
+			</div>
+
+
+		</div>
+
 
 		<!-- App -->
 		<script src="js/app.js"></script>

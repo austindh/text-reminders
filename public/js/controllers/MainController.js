@@ -1,5 +1,7 @@
 app.controller( 'MainController', [ '$scope', function( $scope ) {
 
-	$scope.test = 'HEY';
+	$scope.sendCode = function() {
+		alert( 'send code' );
+	};
 
 } ]);
