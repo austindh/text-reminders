@@ -1,7 +1,12 @@
-app.controller( 'MainController', [ '$scope', function( $scope ) {
+app.controller( 'MainController', [ '$scope', '$http', function( $scope, $http ) {
 
+	//Send verification code for new account
 	$scope.sendCode = function() {
-		alert( 'send code' );
+		console.log( 'sendCode called!' );
+		$http.post( 'api/verificationCode', { number: '1' + $scope.phoneNumber } )
+			.then( function( data ) {
+				console.log( 'data: ', data );
+			});
 	};
 
 } ]);

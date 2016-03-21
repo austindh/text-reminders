@@ -1,1 +1,5 @@
-//Routes for our REST API
+//Routes requiring authentication
+var express = require( 'express' );
+var router = express.Router();
+
+module.exports = router;
