@@ -25,6 +25,7 @@ router.post( '/verificationCode', function( req, res ) {
 	}, 5 * 1000 * 60 );
 
 	var message = 'Your verification code is: ' + code;
+	console.log( 'message: ', message );
 
 	twilio.sendMessage( message, phoneNumber, function( err, data ) {
 
@@ -37,6 +38,21 @@ router.post( '/verificationCode', function( req, res ) {
 		res.end( JSON.stringify( data ) );
 
 	});
+
+});
+
+router.post( '/signUp', function( req, res ) {
+
+	var phoneNumber = req.body.phoneNumber;
+	var verificationCode = parseInt( req.body.verificationCode );
+
+	if ( CODES[phoneNumber] === verificationCode ) {
+		res.writeHead( 200, { 'Content-Type': 'text/plain' } );
+		res.end( 'OK' );
+	} else {
+		res.writeHead( 403, { 'Content-Type': 'text/plain' } );
+		res.end( 'Invalid verification code!' );
+	}
 
 });
 

@@ -17,11 +17,24 @@
 		</div>
 		<div class="main-page">
 
-			<div class="sign-up-box">
+			<div class="sign-up-box {{ loginStep === 1 ? '' : 'hidden' }}">
 				<div class="title">Sign Up</div>
 				<p>Enter your phone number and we'll send you a verification code!</p>
 				<label>Phone number: <input type="text" placeholder="555-555-5555" ng-model="phoneNumber"></label>
-				<div class="button big-action" ng-click="sendCode()">Send code!</div>
+				<div class="buttons">
+					<div class="button big-action" ng-click="sendCode()">Send code!</div>
+				</div>
+			</div>
+			<div class="sign-up-box {{ loginStep === 2 ? '' : 'hidden' }}">
+				<div class="title">Sign Up</div>
+				<p>Enter in the verification code sent to your phone and choose a password:</p>
+				<label><span>Verification Code: </span><input type="text" placeholder="000000" ng-model="verificationCode"></label>
+				<label><span>Password: </span><input type="password"></label>
+				<label><span>Verify Password: </span><input type="password"></label>
+				<div class="buttons">
+					<div class="button cancel" ng-click="loginStep = 1">Back</div>
+					<div class="button big-action" ng-click="signUp()">Sign Up!</div>
+				</div>
 			</div>
 
 

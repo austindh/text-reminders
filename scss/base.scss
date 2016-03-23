@@ -24,6 +24,10 @@ body {
 	background: $lightestGray;
 }
 
+.hidden {
+	display: none!important;
+}
+
 $topHeight: 90px;
 
 .top-bar {
@@ -69,13 +73,15 @@ $topHeight: 90px;
 	display: inline-block;
 	padding: 15px;
 	cursor: pointer;
+	margin: 0 5px;
 
 	&.disable {
 		cursor: default;
 	}
 
 	&.cancel {
-
+		background: $lightestGray;
+		color: $darkGray;
 	}
 
 	&.action {
