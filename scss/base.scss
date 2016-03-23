@@ -16,8 +16,8 @@
 	src: url(../fonts/lato/Lato-Regular.ttf);
 }
 
-* {
-	font-family: latoLight!important;
+div, p, body, input, span, h1 {
+	font-family: latoLight;
 }
 
 body {
