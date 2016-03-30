@@ -30,7 +30,7 @@
 				<p>Enter in the verification code sent to your phone and choose a password:</p>
 				<label><span>Verification Code: </span><input type="text" placeholder="000000" ng-model="verificationCode"></label>
 				<label><span>Password: </span><input type="password"></label>
-				<label><span>Verify Password: </span><input type="password"></label>
+				<label><span>Verify Password: </span><input type="password"ng-model="password"></label>
 				<div class="buttons">
 					<div class="button cancel" ng-click="loginStep = 1">Back</div>
 					<div class="button big-action" ng-click="signUp()">Sign Up!</div>

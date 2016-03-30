@@ -14,7 +14,8 @@ app.controller( 'MainController', [ '$scope', '$http', function( $scope, $http )
 
 	$scope.signUp = function() {
 
-		$http.post( 'api/signUp', { phoneNumber: '1' + $scope.phoneNumber, verificationCode: $scope.verificationCode } )
+		$http.post( 'api/signUp', { phoneNumber: '1' + $scope.phoneNumber, verificationCode: $scope.verificationCode,
+		password: $scope.password} )
 			.then( function( data ) {
 				console.log( 'data: ', data );
 			}, function( err ) {
