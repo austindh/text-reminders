@@ -4,6 +4,8 @@ var router = express.Router();
 var twilio = require( '../texting' );
 var User = require('../models/users')
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
+var secret = require('../../config/jwt').secret;
 
 var CODES = {};
 
@@ -43,16 +45,64 @@ router.post( '/verificationCode', function( req, res ) {
 
 });
 
+router.post( '/authenticate', function( req, res ) {
+
+	console.log(req.body);
+	var phoneNumber = req.body.phoneNumber;
+	var password = req.body.password;
+	var response = res;
+
+	
+	User.findOne({ 'username': phoneNumber }, 'username password', function (err, user) {
+	  if (err)
+	  {
+			res.writeHead(400, {'Content-Type': 'text/plain'})
+			res.end('Incorrect Username');
+			return console.log('Incorrect Username');
+	  }
+	  console.log(user);
+	  
+  	bcrypt.compare(password, user.password, function(err, res) {
+  	    if (!res) //false
+  		{
+  			res.writeHead(400, {'Content-Type': 'text/plain'})
+  			res.end('Incorrect Password');
+  			return console.log('Incorrect Password');
+  		}
+		
+  		if (err)
+  		{
+  			res.writeHead(500, {'Content-Type': 'text/plain'})
+  			res.end('Server Database Error');
+  			return console.log('error in saving to database');
+  		}
+  		console.log("AUTHENTICATED");
+
+  		var token = jwt.sign({ userID: phoneNumber }, secret, { expiresIn: '24h' });
+  		response.json({
+  		success: true,
+  		message: 'Here is the token',
+  		token: token
+  		});
+		
+  	});
+	  
+	  
+	  
+	});
+	
+	
+});
+
+
 router.post( '/signUp', function( req, res ) {
 
 	console.log(req.body);
 	var phoneNumber = req.body.phoneNumber;
 	var verificationCode = parseInt( req.body.verificationCode );
 
-	if ( CODES[phoneNumber] === verificationCode ) {
-		//res.writeHead( 200, { 'Content-Type': 'text/plain' } );
-		//res.end( 'OK' );
-	} else {
+	if ( CODES[phoneNumber] !== verificationCode ) 
+	{
 		res.writeHead( 403, { 'Content-Type': 'text/plain' } );
 		res.end( 'Invalid verification code!' );
 		return;
@@ -73,10 +123,14 @@ router.post( '/signUp', function( req, res ) {
 					res.end('Server Database Error');
 					return console.log('error in saving to database');
 				}
-				console.log("GOT HERE");
+				console.log("REGISTERED");
 	
-				res.writeHead(200, {'Content-Type': 'text/plain'});
-				res.end("OK");
+				var token = jwt.sign({ userID: phoneNumber }, secret, { expiresIn: '24h' });
+				res.json({
+				success: true,
+				message: 'Here is the token',
+				token: token
+				});
 			});
 		}); 
     });

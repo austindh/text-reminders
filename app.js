@@ -25,9 +25,12 @@ mongoose.connection.once( 'open', function() {
 	console.log( 'DB Connected!' );
 });
 
+
+
 //API routes
 var api = require( './app/api' );
 var publicAPI = require( './app/api/public' );
 
+app.use('/api', require('./app/middleware/index.js')());
 app.use( '/api', api );
 app.use( '/api', publicAPI );
